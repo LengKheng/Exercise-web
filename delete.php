@@ -43,6 +43,7 @@
         ?>
         <?php
         if($_SERVER['REQUEST_METHOD']=="POST"){
+           
             $sql1="DELETE FROM tbl_authors WHERE author_id=?;";
             if($stmt1=$connection->prepare($sql1)){
                 $stmt1->bindParam(1,$id1,PDO::PARAM_INT);
@@ -52,6 +53,7 @@
                     exit;
                 }
             }
+            
         }
         ?>
     </div>

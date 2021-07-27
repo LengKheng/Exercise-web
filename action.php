@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category List</title>
+    
     <link href="Libs/fontawesome/css/all.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
     crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="validation.js"></script>
     <style>
         .th{
             border-radius: getmygid;
@@ -29,7 +32,7 @@
     <table class="table table-border">
         <thead style="background-color: #26a2af">
             <tr>
-                <th >author_id</th>
+                <th>author_id</th>
                 <th >author_name</th>
                 <th >phone</th>
                 <th >email</th>
@@ -45,19 +48,21 @@
                 if($rows=$data->fetchAll()){
                     foreach($rows as $row){
                         echo "<tr> 
-                                <td>{$row[0]}</td>
+                                <td >{$row[0]}</td>
                                 <td>{$row[1]}</td>
                                 <td>{$row[2]}</td>
                                 <td>{$row[3]}</td>
                                 <td>{$row[4]}</td>
                                 <td>{$row[5]}</td>
+                               
                                 <td>
                                  <a href='edit.php?id={$row[0]}'>Edit</a>
                                  <a href='delete.php?id={$row[0]}'>Delete</i></a>
                                  <a href='#'>Show</a>
+                                 
+                                 <input type='checkbox' name='recordsCheckBox[]' id='recordsCheckBox' value='<?php echo $row[0] ;?>'>
                                 </td>
-                      
-                                
+                                                  
                             </tr>";
                     }
                 }
@@ -67,7 +72,16 @@
     </table>
 
     </div>
-    <script src="libs/fontawesome/js/all.js"></script>
+    <script>
+    const checkbox = document.getElementById('{$row[0]}');
+    const checkboxes = document.getElementsByClassName('$row[1]');
+
+    checkbox.addEventListener('click', () => {
+      Array.prototype.forEach.call(checkboxes, box => box.checked = checkbox.checked);
+    });
+
+  </script>
+    
     
 </body>
 </html>
